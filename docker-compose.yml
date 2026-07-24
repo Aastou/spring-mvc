@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: groupe2_mvc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passer
+    ports:
+      - "5432:5432"
+
+  app:
+    image: aastou/spring-mvc:latest
+    container_name: spring_mvc_app
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db
+      DB_NAME: groupe2_mvc
+      DB_USER: postgres
+      DB_PASSWORD: passer
+    depends_on:
+      - db

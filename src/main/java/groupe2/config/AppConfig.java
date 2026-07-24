@@ -20,10 +20,14 @@ public class AppConfig {
     public DataSource dataSource() {
 
         BasicDataSource ds = new BasicDataSource();
+        String host = System.getenv("DB_HOST") != null ? System.getenv("DB_HOST") : "localhost";
+        String dbName = System.getenv("DB_NAME") != null ? System.getenv("DB_NAME") : "groupe2_mvc";
+        String user = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "postgres";
+        String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "passer";
         ds.setDriverClassName("org.postgresql.Driver");
-        ds.setUrl("jdbc:postgresql://localhost:5432/groupe2_mvc");
-        ds.setUsername("postgres");
-        ds.setPassword("passer"); // adapte selon ton installation
+        ds.setUrl("jdbc:postgresql://" + host + ":5432/" + dbName);
+        ds.setUsername(user);
+        ds.setPassword(password);
 
         return ds;
     }
