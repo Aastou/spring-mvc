@@ -28,7 +28,7 @@ jobs:
       - name: Connexion à Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_AASTOU }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build et Push de l'image Docker
@@ -36,4 +36,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_AASTOU }}/spring-mvc:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-mvc:latest
